@@ -35,6 +35,9 @@ namespace Quest
 ",
                 4, 20
             );
+            Challenge howManyFingers = new Challenge("How many fingers am I holding up?", new Random().Next(1,5), 25);
+            Challenge woodchuck = new Challenge("How much wood could a woodchuck chuck if a woodchuck could chuck wood?", 7, 75);
+            Challenge bikes = new Challenge("How many wheels does a bike have?", 2, 5 );
 
             // "Awesomeness" is like our Adventurer's current "score"
             // A higher Awesomeness is better
@@ -67,13 +70,33 @@ namespace Quest
                 theAnswer,
                 whatSecond,
                 guessRandom,
-                favoriteBeatle
+                favoriteBeatle,
+                howManyFingers,
+                woodchuck,
+                bikes
             };
-
-            // Loop through all the challenges and subject the Adventurer to them
-            foreach (Challenge challenge in challenges)
+            int getRandomChallenges()
             {
-                challenge.RunChallenge(theAdventurer);
+                int newChallenges = new Random().Next(0, 7);
+                return newChallenges;
+            }
+            var randomChallenges = new List<int>();
+            while(randomChallenges.Count < 5)
+            {
+                int challenge = getRandomChallenges();
+                if(!randomChallenges.Contains(challenge))
+                {
+                   randomChallenges.Add(challenge);     
+                }
+            }
+            
+            // Loop through all of the random challenges and play 5 of them
+
+            for (var i = 0; i < randomChallenges.Count; i++)
+            {
+                int theChallenge = randomChallenges[i];
+                Challenge currentChallenge = challenges[theChallenge];
+                currentChallenge.RunChallenge(theAdventurer);                
             }
 
             // This code examines how Awesome the Adventurer is after completing the challenges
@@ -90,6 +113,13 @@ namespace Quest
             {
                 Console.WriteLine("I guess you did...ok? ...sorta. Still, you should get out of my sight.");
             }
+            void Prize(Adventurer adventurer)
+            {
+                Prize usersPrize = new Prize($"You win {theAdventurer.Awesomeness} jars of pickles!!");
+                usersPrize.ShowPrize(adventurer);
+            }
+            Prize(theAdventurer);
+
             Console.WriteLine("Play Again? Yes or No...");
             string answer = Console.ReadLine().ToLower();
 
