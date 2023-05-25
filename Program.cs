@@ -51,8 +51,12 @@ namespace Quest
                 Color = "red",
                 Length = 57
             };
+            Hat newHat = new Hat
+            {
+                ShininessLevel = 5    
+            };
 
-            Adventurer theAdventurer = new Adventurer(userName, newRobe);
+            Adventurer theAdventurer = new Adventurer(userName, newRobe, newHat);
             theAdventurer.GetDescription();
             
             // A list of challenges for the Adventurer to complete
