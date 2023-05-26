@@ -7,6 +7,11 @@ namespace Quest
 {
     class Program
     {
+        public static int challengeTally = 0;
+        public static void increaseChallengeTally()
+        {
+            challengeTally++;
+        }
         static void Main(string[] args)
         {
             // Create a few challenges for our Adventurer's quest
@@ -75,11 +80,13 @@ namespace Quest
                 woodchuck,
                 bikes
             };
+            // Randomize the challenges
             int getRandomChallenges()
             {
                 int newChallenges = new Random().Next(0, 7);
                 return newChallenges;
             }
+            //create a different list of challenges that have been randomized
             var randomChallenges = new List<int>();
             while(randomChallenges.Count < 5)
             {
@@ -126,6 +133,10 @@ namespace Quest
             if (answer == "yes")
             {
                 Main(args);
+            challengeTally = (challengeTally * 10);
+            theAdventurer.Awesomeness += challengeTally;
+            challengeTally = 0;
+            Console.WriteLine($"Awesomeness Level: {theAdventurer.Awesomeness}");
             }
             else if (answer == "no")
             {
