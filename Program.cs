@@ -21,7 +21,7 @@ namespace Quest
             //   a number of awesome points to gain or lose depending on the success of the challenge
             Console.WriteLine("What is your name adventurer?... ");
             string userName = Console.ReadLine();
-            
+
             Challenge twoPlusTwo = new Challenge("2 + 2?", 4, 10);
             Challenge theAnswer = new Challenge(
                 "What's the answer to life, the universe and everything?", 42, 25);
@@ -40,9 +40,9 @@ namespace Quest
 ",
                 4, 20
             );
-            Challenge howManyFingers = new Challenge("How many fingers am I holding up?", new Random().Next(1,5), 25);
+            Challenge howManyFingers = new Challenge("How many fingers am I holding up?", new Random().Next(1, 5), 25);
             Challenge woodchuck = new Challenge("How much wood could a woodchuck chuck if a woodchuck could chuck wood?", 7, 75);
-            Challenge bikes = new Challenge("How many wheels does a bike have?", 2, 5 );
+            Challenge bikes = new Challenge("How many wheels does a bike have?", 2, 5);
 
             // "Awesomeness" is like our Adventurer's current "score"
             // A higher Awesomeness is better
@@ -61,12 +61,12 @@ namespace Quest
             };
             Hat newHat = new Hat
             {
-                ShininessLevel = 5    
+                ShininessLevel = 5
             };
 
             Adventurer theAdventurer = new Adventurer(userName, newRobe, newHat);
             theAdventurer.GetDescription();
-            
+
             // A list of challenges for the Adventurer to complete
             // Note we can use the List class here because have the line "using System.Collections.Generic;" at the top of the file.
             List<Challenge> challenges = new List<Challenge>()
@@ -88,22 +88,22 @@ namespace Quest
             }
             //create a different list of challenges that have been randomized
             var randomChallenges = new List<int>();
-            while(randomChallenges.Count < 5)
+            while (randomChallenges.Count < 5)
             {
                 int challenge = getRandomChallenges();
-                if(!randomChallenges.Contains(challenge))
+                if (!randomChallenges.Contains(challenge))
                 {
-                   randomChallenges.Add(challenge);     
+                    randomChallenges.Add(challenge);
                 }
             }
-            
+
             // Loop through all of the random challenges and play 5 of them
 
             for (var i = 0; i < randomChallenges.Count; i++)
             {
                 int theChallenge = randomChallenges[i];
                 Challenge currentChallenge = challenges[theChallenge];
-                currentChallenge.RunChallenge(theAdventurer);                
+                currentChallenge.RunChallenge(theAdventurer);
             }
 
             // This code examines how Awesome the Adventurer is after completing the challenges
@@ -133,10 +133,10 @@ namespace Quest
             if (answer == "yes")
             {
                 Main(args);
-            challengeTally = (challengeTally * 10);
-            theAdventurer.Awesomeness += challengeTally;
-            challengeTally = 0;
-            Console.WriteLine($"Awesomeness Level: {theAdventurer.Awesomeness}");
+                challengeTally = (challengeTally * 10);
+                theAdventurer.Awesomeness += challengeTally;
+                challengeTally = 0;
+                Console.WriteLine($"Awesomeness Level: {theAdventurer.Awesomeness}");
             }
             else if (answer == "no")
             {
